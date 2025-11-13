@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Secret Lock — For Premii 💗</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💗</text></svg>"
+    />
+    <link rel="stylesheet" href="css/index.css" />
+  </head>
+  <body>
+    <div class="card">
+      <div class="header">
+        <div class="logo">💌</div>
+        <div>
+          <h1 id="title">A little lock for my Premii</h1>
+          <p class="lead">
+            Enter the cosmic code to unlock your special wish. A secret just for
+            us ✨
+          </p>
+        </div>
+      </div>
+
+      <div class="hint">
+        <strong>Hint:</strong> A <em>10-digit cosmic code</em> born on a day
+        when our stars aligned — <br />
+        <span class="heart">❤</span> one year, one month, one day — holding
+        <em>your name</em> and <em>mine</em> in an eternal rhythm of love.
+      </div>
+
+      <form class="row" id="lockForm" onsubmit="return false;">
+        <div class="password-wrapper">
+          <input
+            id="pwd"
+            type="password"
+            inputmode="numeric"
+            placeholder="Enter 10-digit code"
+            maxlength="12"
+            autocomplete="off"
+          />
+          <span class="eye" id="toggleEye">👁️</span>
+        </div>
+        <button class="unlock" id="submitBtn">Unlock ❤️</button>
+      </form>
+
+      <div class="meta">
+        <div class="small">
+          Tip: It's encrypted and kept safe...only the right heart can open it.
+        </div>
+        <div style="flex: 1"></div>
+        <div class="foot">Made with love • Jamai → Premii</div>
+      </div>
+    </div>
+
+    <div id="popup" class="popup">
+      <h3 id="popupTitle">Oops</h3>
+      <p id="popupMessage">Try again, my love 💗</p>
+      <button class="close" id="popupClose">Close</button>
+    </div>
+    <script src="js/index.js"></script>
+  </body>
+</html>

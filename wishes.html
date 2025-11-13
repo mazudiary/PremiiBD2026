@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Happy Birthday, Premii ❤️</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>">
+   <link rel="stylesheet" href="css/wishes.css" />
+  </head>
+  <body>
+    <div class="header"></div>
+    <div class="subtext">
+      Today is your day…and my whole heart is celebrating you.
+    </div>
+    <div class="container">
+      <div class="block cinematic">
+        <div class="block-title">🌸 My Beautiful Wiffy</div>
+        <div class="image-frame">
+          <img
+            id="premiiImg"
+            class="heartbeat"
+            src="./assets/image.jpg"
+            alt="Premii Picture"
+          />
+        </div>
+      </div>
+      <div class="block cinematic" id="storyBlock">
+        <div class="block-title">💖 Our Story, My Shokher Narii</div>
+        <div class="story-text story-lines" id="storyLines">
+          <span class="story-line">
+            <span class="story-date">15 May 2002</span> — the day my Premii, my
+            Bibijan, my sweetest Lopai came into this world
+            <span class="story-heart">🎂❤</span>
+          </span>
+
+          <span class="story-line"
+            ><span class="story-date">14 February 2020</span> — the day I first
+            met the girl who would become my entire universe
+            <span class="story-heart">❤</span></span
+          >
+          <span class="story-line"
+            ><span class="story-date">17 June 2025</span> — the day our love
+            began; since then every heartbeat carries your name
+            <span class="story-heart">💗</span></span
+          >
+          <span class="story-line"
+            ><span class="story-date">1 July 2025</span> — our first date; the
+            first step into the forever we are building together
+            <span class="story-heart">💞</span></span
+          >
+          <span class="story-divider"></span>
+          <span class="story-line"
+            >You, <span class="story-name">Farzana Hossain Lopa</span> — my
+            Premii, Pakhiii, Golappp, Sweetheart, Dreamy, Queen, Farzan, the
+            love of my lifetime.</span
+          >
+          <span class="story-line">Our love language:</span>
+          <span class="story-line">
+            <span class="love-language">Valobashiii Valobashaa</span>
+            <span class="love-language">Valobashaa Valobashiii</span>
+            <span class="love-language"
+              >Valobasharr Valobashaa Valobashiii</span
+            >
+
+            <span class="love-language">Loveee, oh my loveee</span>
+            <span class="love-language">Loveee and only loveee</span>
+            <span class="love-language">The loveee of my loveee</span>
+            <span class="love-language">The deepest loveee</span>
+          </span>
+          <span class="story-line emphasis"
+            >You are my Lili flower, my happiness, my everything.</span
+          >
+        </div>
+      </div>
+
+      <div class="block cinematic">
+        <div class="block-title">🎥 It's for you</div>
+        <div class="romantic-video" id="romanticVideo">
+          <video
+            class="rv-video"
+            id="wishVideo"
+            src="https://drive.google.com/file/d/1ZiYEWKxLfcQxV3m-m-WthSJg0M8MatHg/view?usp=drive_link"
+            
+            autoplay
+            muted
+            loop
+            playsinline
+            preload="auto"
+            crossorigin="anonymous"
+          ></video>
+          <div class="rv-layer rv-camera">
+            <div class="bokeh" id="rvBokeh"></div>
+            <div class="lilies" id="rvLilies"></div>
+            <div class="petals" id="rvPetals"></div>
+            <div class="sparkles" id="rvSparkles"></div>
+            <div class="rv-hearts" id="rvHearts"></div>
+          </div>
+          <div class="rv-text" id="rvText">
+            <div class="line" id="rvLine"></div>
+          </div>
+          <canvas class="film-grain" id="rvGrain"></canvas>
+          <button class="rv-sound" id="rvSound" aria-label="Toggle sound">
+            <span id="soundIcon">🔇</span>
+            <span id="soundText">Sound Off</span>
+          </button>
+          <button class="rv-replay" id="rvReplay" aria-label="Replay">
+            ↻ Replay
+          </button>
+          </button>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 40px">
+        <button
+          id="loveLetterBtn"
+          style="
+            padding: 12px 28px;
+            background: #ff4fa3;
+            color: white;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+          "
+        >
+          💌 Click for a Love Letter
+        </button>
+      </div>
+
+      <div class="love-tag">Forever yours — Your Jamai, Your Baby ❤️</div>
+    </div>
+    <div id="loveModal" class="modal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>💌 আমার প্রেমময় চিঠি তোমার জন্য</h2>
+          <span class="close-btn">&times;</span>
+        </div>
+        <div class="modal-body">
+          <div class="letter-heart">
+            <div class="heart-text">
+              <div class="line1">HAPPY BIRTHDAY</div>
+              <div class="line2">MY PREMII</div>
+            </div>
+          </div>
+          <div class="letter-text">
+            প্রিয় আমার প্রিয়ি,
+            
+            তুমি আমার জীবনের সবচেয়ে সুন্দর অনুভূতি… 
+            
+            তোমাকে ছুঁয়ে থাকে আমার প্রতিটা প্রার্থনা… 
+            
+            তুমি আমার আজ, তুমি আমার আগামী, তুমি আমার অনন্তকাল।
+            
+            প্রতিটি দিন তোমার সাথে একটি নতুন স্বপ্ন, প্রতিটি মুহূর্ত তোমার সাথে একটি উপহার।
+            
+            তোমার হাসিতে আমার পৃথিবী আলোকিত হয়, তোমার ভালোবাসায় আমার হৃদয় পূর্ণ হয়।
+            
+            আমি চাই তোমার প্রতিটি জন্মদিন হোক আগের চেয়ে আরও সুন্দর, আরও আনন্দময়।
+            
+            Valobashiii Valobashaa... Loveee and only loveee...
+            
+            <div class="letter-signature">— তোমার জামাই 💗</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="love-phrase" id="phrase1">
+      আমার হৃদয় তোমার জন্য ধুকধুক করছে ❤️
+    </div>
+    <div class="love-phrase" id="phrase2">প্রেমের আলো তোমার চোখে জ্বলে 🔥</div>
+    <script src="js/wishes.js"></script>
+  </body>
+</html>
