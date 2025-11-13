@@ -48,7 +48,7 @@ async function tryUnlock() {
     sessionStorage.setItem("premii_unlocked", "true");
     showPopup(
       "Unlocked ✨",
-      "The lock opened — your wish is ready. Redirecting to the surprise…"
+      "The lock opened...your wish is ready. Redirecting to the surprise…"
     );
     setTimeout(() => (location.href = "wish.html"), 2000);
   } else {
@@ -64,3 +64,4 @@ function showPopup(title, msg) {
 function hidePopup() {
   popup.classList.remove("show");
 }
+
