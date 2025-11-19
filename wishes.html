@@ -8,13 +8,16 @@
    <link rel="stylesheet" href="css/wishes.css" />
   </head>
   <body>
+    <div class="star-field" id="starField"></div>
+    <div class="floating-elements" id="floatingElements"></div>
+    <div class="magic-sparkles" id="magicSparkles"></div>
     <div class="header"></div>
     <div class="subtext">
       Today is your day…and my whole heart is celebrating you.
     </div>
     <div class="container">
       <div class="block cinematic">
-        <div class="block-title">🌸 My Beautiful Wiffy</div>
+        <div class="block-title">🌸 My Beautiful Wiffeey</div>
         <div class="image-frame">
           <img
             id="premiiImg"
@@ -108,25 +111,27 @@
         </div>
       </div>
 
-      <div style="text-align: center; margin-top: 40px">
-        <button
-          id="loveLetterBtn"
-          style="
-            padding: 12px 28px;
-            background: #ff4fa3;
-            color: white;
-            font-size: 1.1rem;
-            border: none;
-            border-radius: 12px;
-            cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-          "
-        >
-          💌 Click for a Love Letter
-        </button>
+      <div style="text-align: center; margin-top: 60px">
+        <div class="gift-box-container">
+          <div class="box">
+            <div class="box-body" id="giftBox">
+              <div class="content-reveal">💌</div>
+              <div class="box-lid">
+                <div class="box-bowtie"></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       <div class="love-tag">Forever yours — Your Jamai, Your Baby ❤️</div>
+      
+      <div style="text-align: center; margin-top: 30px; margin-bottom: 40px;">
+        <a href="cake.html" class="cake-button">
+          <span class="cake-icon">🎂</span>
+          <span>Make a Wish!</span>
+        </a>
+      </div>
     </div>
     <div id="loveModal" class="modal">
       <div class="modal-content">
@@ -136,29 +141,12 @@
         </div>
         <div class="modal-body">
           <div class="letter-heart">
-            <div class="heart-text">
-              <div class="line1">HAPPY BIRTHDAY</div>
-              <div class="line2">MY PREMII</div>
-            </div>
+            <img src="assets/iloveyou.gif" alt="Love Kiss" class="love-kiss-gif">
           </div>
           <div class="letter-text">
-            প্রিয় আমার প্রিয়ি,
             
-            তুমি আমার জীবনের সবচেয়ে সুন্দর অনুভূতি… 
             
-            তোমাকে ছুঁয়ে থাকে আমার প্রতিটা প্রার্থনা… 
-            
-            তুমি আমার আজ, তুমি আমার আগামী, তুমি আমার অনন্তকাল।
-            
-            প্রতিটি দিন তোমার সাথে একটি নতুন স্বপ্ন, প্রতিটি মুহূর্ত তোমার সাথে একটি উপহার।
-            
-            তোমার হাসিতে আমার পৃথিবী আলোকিত হয়, তোমার ভালোবাসায় আমার হৃদয় পূর্ণ হয়।
-            
-            আমি চাই তোমার প্রতিটি জন্মদিন হোক আগের চেয়ে আরও সুন্দর, আরও আনন্দময়।
-            
-            Valobashiii Valobashaa...Loveee and only loveee...
-            
-            <div class="letter-signature">— তোমার জামাই 💗</div>
+            <div class="letter-signature"></div>
           </div>
         </div>
       </div>
@@ -171,4 +159,3 @@
     <script src="js/wishes.js"></script>
   </body>
 </html>
-
