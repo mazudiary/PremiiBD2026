@@ -13,6 +13,10 @@ let poppedCount = 0;
 const totalBalloons = 4;
 const words = [];
 
+if (!sessionStorage.getItem("premii_unlocked")) {
+  window.location.href = "index.html";
+}
+
 // Create twinkling stars background
 function createStars() {
   for (let i = 0; i < 100; i++) {
