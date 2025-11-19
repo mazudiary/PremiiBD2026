@@ -1,3 +1,59 @@
+/* Create star field */
+function createStarField() {
+  const starField = document.getElementById("starField");
+  for (let i = 0; i < 80; i++) {
+    const star = document.createElement("div");
+    star.className = "star";
+    star.style.left = Math.random() * 100 + "%";
+    star.style.top = Math.random() * 100 + "%";
+    star.style.animationDelay = Math.random() * 3 + "s";
+    star.style.animationDuration = 2 + Math.random() * 2 + "s";
+    starField.appendChild(star);
+  }
+}
+
+/* Create floating elements */
+function createFloatingElements() {
+  const container = document.getElementById("floatingElements");
+  const elements = ["❤️", "💕", "💖", "💗", "🌸", "🌺", "🌹", "💝", "💞", "🦋"];
+
+  setInterval(() => {
+    const element = document.createElement("div");
+    element.className = "floating-element";
+    element.textContent = elements[Math.floor(Math.random() * elements.length)];
+    element.style.left = Math.random() * 100 + "%";
+    element.style.animationDuration = 10 + Math.random() * 4 + "s";
+    element.style.animationDelay = Math.random() * 2 + "s";
+    container.appendChild(element);
+
+    setTimeout(() => element.remove(), 14000);
+  }, 1800);
+}
+
+/* Create magic sparkles */
+function createMagicSparkles() {
+  const container = document.getElementById("magicSparkles");
+  const sparkles = ["✨", "⭐", "💫", "🌟", "⚡", "💥"];
+
+  setInterval(() => {
+    const sparkle = document.createElement("div");
+    sparkle.className = "magic-sparkle";
+    sparkle.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
+    sparkle.style.left = Math.random() * 100 + "%";
+    sparkle.style.top = Math.random() * 100 + "%";
+    sparkle.style.animationDuration = 3 + Math.random() * 2 + "s";
+    sparkle.style.animationDelay = Math.random() * 1 + "s";
+    container.appendChild(sparkle);
+
+    setTimeout(() => sparkle.remove(), 5000);
+  }, 1200);
+}
+
+// Initialize background effects
+createStarField();
+createFloatingElements();
+createMagicSparkles();
+
 /* Floating Hearts */
 function createHeart() {
   const heart = document.createElement("div");
@@ -74,11 +130,54 @@ span.style.setProperty(
 // After animation completes allow wrapping & remove caret blink
 setTimeout(() => span.classList.add("finished"), durationMs + 150);
 
-/* Modal */
+/* Load Letter Content from JSON */
+async function loadLetterContent() {
+  try {
+    const response = await fetch("data/letter.json");
+    const letterData = await response.json();
+
+    // Update modal title
+    const modalHeader = document.querySelector(".modal-header h2");
+    if (modalHeader) {
+      modalHeader.textContent = letterData.title;
+    }
+
+    // Update letter text
+    const letterTextDiv = document.querySelector(".letter-text");
+    if (letterTextDiv) {
+      let content = letterData.greeting + "\n\n";
+      content += letterData.paragraphs.join("\n\n");
+      content += "\n\n";
+
+      letterTextDiv.innerHTML =
+        content.replace(/\n/g, "<br>") +
+        `<div class="letter-signature">${letterData.signature}</div>`;
+    }
+  } catch (error) {
+    console.error("Error loading letter content:", error);
+  }
+}
+
+// Load letter content when page loads
+loadLetterContent();
+
+/* Gift Box & Modal */
 const modal = document.getElementById("loveModal");
-const btn = document.getElementById("loveLetterBtn");
+const giftBox = document.getElementById("giftBox");
 const closeBtn = document.querySelector(".close-btn");
-btn.onclick = () => (modal.style.display = "block");
+
+let hoverTimeout;
+
+giftBox.addEventListener("mouseenter", () => {
+  hoverTimeout = setTimeout(() => {
+    modal.style.display = "block";
+  }, 1200);
+});
+
+giftBox.addEventListener("mouseleave", () => {
+  clearTimeout(hoverTimeout);
+});
+
 closeBtn.onclick = () => (modal.style.display = "none");
 window.onclick = (e) => {
   if (e.target == modal) modal.style.display = "none";
