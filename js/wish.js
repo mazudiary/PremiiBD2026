@@ -103,9 +103,9 @@ function animate() {
 animate();
 
 // Glowing FARZAN reveal with sparkles
-const farzanText = document.getElementById("farzanText");
+const PremiiText = document.getElementById("PremiiText");
 setTimeout(() => {
-  farzanText.style.opacity = "1";
+  PremiiText.style.opacity = "1";
   for (let i = 0; i < 50; i++) {
     const s = document.createElement("div");
     s.classList.add("sparkle");
@@ -121,3 +121,4 @@ window.addEventListener("resize", () => {
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 });
+
