@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pop the Balloons! 🎈</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🎈</text></svg>"
+    />
+    <link rel="stylesheet" href="css/balloon.css" />
+  </head>
+  <body>
+    <div class="stars" id="stars"></div>
+    <div class="floating-hearts" id="floatingHearts"></div>
+    <div class="rose-petals" id="rosePetals"></div>
+    <div class="lily-flowers" id="lilyFlowers"></div>
+    <div class="bunting">
+      <div class="flag"></div>
+      <div class="flag"></div>
+      <div class="flag"></div>
+      <div class="flag"></div>
+      <div class="flag"></div>
+      <div class="flag"></div>
+      <div class="flag"></div>
+      <div class="flag"></div>
+    </div>
+
+    <div class="game-container">
+      <h1 class="title">Pop all 4 balloons</h1>
+
+      <div class="balloons-container" id="balloonsContainer">
+        <div class="balloon-wrapper" data-balloon="1">
+          <div class="hover-tooltip">💕 Pop me to reveal...</div>
+          <div class="balloon pink" data-word="You">
+            <div class="balloon-shine"></div>
+            <div class="balloon-highlight"></div>
+          </div>
+          <div class="string"></div>
+          <div class="balloon-text">You</div>
+        </div>
+
+        <div class="balloon-wrapper" data-balloon="2">
+          <div class="hover-tooltip">💕 Pop me to reveal...</div>
+          <div class="balloon orange" data-word="are">
+            <div class="balloon-shine"></div>
+            <div class="balloon-highlight"></div>
+          </div>
+          <div class="string"></div>
+          <div class="balloon-text">are</div>
+        </div>
+
+        <div class="balloon-wrapper" data-balloon="3">
+          <div class="hover-tooltip">💕 Pop me to reveal...</div>
+          <div class="balloon green" data-word="a">
+            <div class="balloon-shine"></div>
+            <div class="balloon-highlight"></div>
+          </div>
+          <div class="string"></div>
+          <div class="balloon-text">a</div>
+        </div>
+
+        <div class="balloon-wrapper" data-balloon="4">
+          <div class="hover-tooltip">💕 Pop me to reveal...</div>
+          <div class="balloon blue" data-word="Cutiee">
+            <div class="balloon-shine"></div>
+            <div class="balloon-highlight"></div>
+          </div>
+          <div class="string"></div>
+          <div class="balloon-text">Cutiee</div>
+        </div>
+      </div>
+
+      <div class="message-container" id="messageContainer"></div>
+
+      <div class="polaroid-frame" id="polaroidFrame">
+        <div class="polaroid-photo">
+          <img
+            src="assets/love_kiss.gif"
+            alt="For My Premii"
+            class="polaroid-img"
+          />
+          <div class="polaroid-caption">You are a Cutiee, my Premii 💝</div>
+          <div class="polaroid-signature">— Your Jamai, Your Baby ❤️</div>
+        </div>
+      </div>
+
+      <div class="confetti-container" id="confettiContainer"></div>
+
+      <a href="wishes.html" class="next-button" id="nextButton">
+        <span>Next →</span>
+      </a>
+    </div>
+
+    <script src="js/balloon.js"></script>
+  </body>
+</html>
