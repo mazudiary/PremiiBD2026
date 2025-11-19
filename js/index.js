@@ -4,6 +4,47 @@ const storedHash =
 const input = document.getElementById("pwd");
 const eye = document.getElementById("toggleEye");
 
+// Create floating hearts
+function createFloatingHearts() {
+  const container = document.getElementById("floatingHearts");
+  const hearts = ["❤️", "💕", "💖", "💗", "💝", "💞"];
+
+  setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "floating-heart";
+    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+    heart.style.left = Math.random() * 100 + "%";
+    heart.style.animationDuration = 6 + Math.random() * 4 + "s";
+    heart.style.animationDelay = Math.random() * 2 + "s";
+    container.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 10000);
+  }, 2000);
+}
+
+// Create sparkles
+function createSparkles() {
+  const container = document.getElementById("sparkles");
+  const sparkles = ["✨", "⭐", "💫", "🌟"];
+
+  setInterval(() => {
+    const sparkle = document.createElement("div");
+    sparkle.className = "sparkle";
+    sparkle.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
+    sparkle.style.left = Math.random() * 100 + "%";
+    sparkle.style.top = Math.random() * 100 + "%";
+    sparkle.style.animationDuration = 3 + Math.random() * 2 + "s";
+    sparkle.style.animationDelay = Math.random() * 1 + "s";
+    container.appendChild(sparkle);
+
+    setTimeout(() => sparkle.remove(), 5000);
+  }, 800);
+}
+
+// Initialize animations
+createFloatingHearts();
+createSparkles();
+
 eye.onclick = () => {
   if (input.type === "password") {
     input.type = "text";
@@ -64,4 +105,3 @@ function showPopup(title, msg) {
 function hidePopup() {
   popup.classList.remove("show");
 }
-
