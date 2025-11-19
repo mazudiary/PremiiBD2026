@@ -1,3 +1,7 @@
+if (!sessionStorage.getItem("premii_unlocked")) {
+  window.location.href = "index.html";
+}
+
 // Create star field
 function createStarField() {
   const starField = document.getElementById("starField");
