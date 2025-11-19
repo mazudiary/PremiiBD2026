@@ -5,7 +5,7 @@ if (!sessionStorage.getItem("premii_unlocked")) {
 
 // Redirect after 30 seconds
 setTimeout(() => {
-  window.location.href = "wishes.html";
+  window.location.href = "balloon.html";
 }, 30000);
 
 // Balloons
