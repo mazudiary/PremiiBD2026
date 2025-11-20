@@ -840,6 +840,20 @@ body {
   }
 }
 
+/* Hardware acceleration for animations */
+.box-lid {
+  will-change: transform;
+}
+
+.box-body {
+  will-change: transform;
+}
+
+.box-bowtie::before,
+.box-bowtie::after {
+  will-change: transform;
+}
+
 @keyframes box-body {
   0% {
     transform: translate3d(0%, 0%, 0) rotate(0deg);
@@ -1050,8 +1064,9 @@ body {
       transparent 70%
     ),
     rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(12px);
+  backdrop-filter: blur(8px);
   animation: modalFadeIn 0.3s ease-out;
+  will-change: opacity;
 }
 
 @keyframes modalFadeIn {
@@ -1068,7 +1083,7 @@ body {
     rgba(255, 248, 240, 0.98),
     rgba(255, 240, 247, 0.95)
   );
-  backdrop-filter: blur(20px);
+  backdrop-filter: blur(12px);
   margin: 3% auto;
   padding: 0;
   border-radius: 24px;
@@ -1077,13 +1092,15 @@ body {
   max-height: 90vh;
   color: #5b3434;
   box-shadow: 0 20px 60px rgba(255, 79, 163, 0.3),
-    0 0 100px rgba(255, 107, 157, 0.15), inset 0 0 80px rgba(255, 255, 255, 0.1);
-  animation: popIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    0 0 80px rgba(255, 107, 157, 0.12);
+  animation: popIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
   overflow: hidden;
   display: flex;
   flex-direction: column;
   border: 2px solid rgba(255, 182, 193, 0.3);
   position: relative;
+  will-change: transform, opacity;
+  transform: translateZ(0);
 }
 
 .modal-content::before {
@@ -1095,12 +1112,13 @@ body {
   height: 200%;
   background: radial-gradient(
     circle,
-    rgba(255, 182, 193, 0.15) 0%,
+    rgba(255, 182, 193, 0.12) 0%,
     transparent 70%
   );
-  animation: modalGlow 15s linear infinite;
+  animation: modalGlow 20s linear infinite;
   pointer-events: none;
   z-index: 0;
+  will-change: transform;
 }
 
 @keyframes modalGlow {
@@ -1611,6 +1629,99 @@ body {
   .typing {
     --caret-width: 2px;
   }
+
+  /* Gift box optimization for mobile */
+  .box::before {
+    width: 200px;
+    height: 200px;
+  }
+
+  .box:hover::before {
+    width: 240px;
+    height: 240px;
+  }
+
+  .box-body {
+    height: 140px;
+    width: 140px;
+    margin-top: 60px;
+  }
+
+  .content-reveal {
+    font-size: 56px;
+  }
+
+  .box-body::after {
+    width: 28px;
+  }
+
+  .box-lid {
+    height: 28px;
+    width: 154px;
+  }
+
+  .box-lid::after {
+    width: 28px;
+  }
+
+  .box-bowtie::before,
+  .box-bowtie::after {
+    width: 50px;
+    height: 50px;
+    border: 10px solid white;
+  }
+
+  /* Optimize modal for mobile */
+  .modal {
+    backdrop-filter: blur(4px);
+  }
+
+  .modal-content {
+    backdrop-filter: blur(6px);
+    animation: popInMobile 0.3s ease-out;
+    box-shadow: 0 10px 30px rgba(255, 79, 163, 0.25);
+  }
+
+  @keyframes popInMobile {
+    from {
+      transform: scale(0.85) translateY(-20px);
+      opacity: 0;
+    }
+    to {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+    }
+  }
+
+  .modal-content::before {
+    animation: modalGlow 30s linear infinite;
+  }
+
+  .modal-header::after {
+    animation: none;
+  }
+
+  /* Disable box animations on mobile - use simple fade instead */
+  .box-body:hover {
+    animation: none;
+  }
+
+  .box-body:hover .box-lid {
+    animation: simpleLidOpen 0.5s forwards ease-out;
+  }
+
+  .box-body:hover .box-bowtie::before,
+  .box-body:hover .box-bowtie::after {
+    animation: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  @keyframes simpleLidOpen {
+    to {
+      transform: translate3d(-50%, -100%, 0) rotate(-15deg);
+    }
+  }
 }
 @media (max-width: 420px) {
   .header {
@@ -1628,5 +1739,66 @@ body {
   }
   .romantic-video {
     border-radius: 14px;
+  }
+
+  /* Further reduce gift box for very small screens */
+  .box::before {
+    width: 160px;
+    height: 160px;
+  }
+
+  .box:hover::before {
+    width: 200px;
+    height: 200px;
+  }
+
+  .box-body {
+    height: 120px;
+    width: 120px;
+    margin-top: 50px;
+  }
+
+  .content-reveal {
+    font-size: 48px;
+  }
+
+  .box-body::after {
+    width: 24px;
+  }
+
+  .box-lid {
+    height: 24px;
+    width: 132px;
+  }
+
+  .box-lid::after {
+    width: 24px;
+  }
+
+  .box-bowtie::before,
+  .box-bowtie::after {
+    width: 42px;
+    height: 42px;
+    border: 8px solid white;
+  }
+
+  /* Further optimize modal for very small screens */
+  .modal {
+    backdrop-filter: blur(3px);
+  }
+
+  .modal-content {
+    backdrop-filter: blur(4px);
+    border-radius: 16px;
+    animation-duration: 0.25s;
+  }
+
+  .modal-header {
+    padding: 18px 24px;
+    animation: none;
+  }
+
+  .modal-header h2 {
+    font-size: 1.3rem;
   }
 }
