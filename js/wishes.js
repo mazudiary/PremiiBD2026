@@ -430,6 +430,8 @@ window.onclick = (e) => {
 
   // Text sequencing
   let playing = false;
+  let currentSceneIndex = 0;
+
   function showLine(text, zoom) {
     lineEl.classList.remove("show", "zoom");
     lineEl.innerText = text;
@@ -441,18 +443,30 @@ window.onclick = (e) => {
       });
     });
   }
+
   async function playScenes() {
     if (playing) return;
     playing = true;
+    currentSceneIndex = 0;
+
+    // Clear any existing text
+    lineEl.classList.remove("show", "zoom");
+    lineEl.innerText = "";
+
     cancelAnimationFrame(grainRAF);
     drawGrain();
+
     for (const s of scenes) {
       showLine(s.text, !!s.zoom);
       await new Promise((res) => setTimeout(res, s.dur));
+      currentSceneIndex++;
     }
     // Fade out text at end
     lineEl.classList.remove("show", "zoom");
-    setTimeout(() => (playing = false), 600);
+    setTimeout(() => {
+      playing = false;
+      currentSceneIndex = 0;
+    }, 600);
   }
 
   // Auto start when visible
@@ -479,12 +493,24 @@ window.onclick = (e) => {
   ov.observe(container);
 
   replayBtn.addEventListener("click", () => {
+    // Stop current playback
     playing = false;
-    playScenes();
+    currentSceneIndex = 0;
+
+    // Reset video to start
     if (wishVideo) {
       wishVideo.currentTime = 0;
       wishVideo.play().catch(() => {});
     }
+
+    // Reset text and restart animation sequence
+    lineEl.classList.remove("show", "zoom");
+    lineEl.innerText = "";
+
+    // Small delay before starting new sequence
+    setTimeout(() => {
+      playScenes();
+    }, 100);
   });
 
   // Sound toggle
