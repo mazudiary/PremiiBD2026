@@ -1,11 +1,40 @@
+/**
+ * Wishes Page - Optimized for Mobile Performance
+ *
+ * Mobile Optimizations:
+ * - Detects mobile devices and reduces particle count by 50-70%
+ * - Disables floating elements and sparkles on mobile
+ * - Reduces film grain rendering frame rate
+ * - Implements debounced scroll events
+ * - Uses passive event listeners
+ * - Limits concurrent animations with maxElement counters
+ * - Lazy loads video and images
+ *
+ * Performance Features:
+ * - Automatic cleanup of DOM elements
+ * - RequestAnimationFrame for smooth animations
+ * - Intersection Observer for lazy initialization
+ * - Reduced particle spawn intervals on low-end devices
+ */
+
 if (!sessionStorage.getItem("premii_unlocked")) {
   window.location.href = "index.html";
 }
 
+/* Detect mobile/low-end devices for performance optimization */
+const isMobile =
+  /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+    navigator.userAgent
+  ) || window.innerWidth < 768;
+const isLowEnd =
+  navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4;
+const reduceEffects = isMobile || isLowEnd;
+
 /* Create star field */
 function createStarField() {
   const starField = document.getElementById("starField");
-  for (let i = 0; i < 80; i++) {
+  const starCount = reduceEffects ? 30 : 80;
+  for (let i = 0; i < starCount; i++) {
     const star = document.createElement("div");
     star.className = "star";
     star.style.left = Math.random() * 100 + "%";
@@ -18,10 +47,17 @@ function createStarField() {
 
 /* Create floating elements */
 function createFloatingElements() {
+  if (reduceEffects) return; // Skip on mobile for better performance
+
   const container = document.getElementById("floatingElements");
   const elements = ["❤️", "💕", "💖", "💗", "🌸", "🌺", "🌹", "💝", "💞", "🦋"];
+  const interval = reduceEffects ? 3000 : 1800;
+  const maxElements = reduceEffects ? 5 : 10;
+  let activeCount = 0;
 
   setInterval(() => {
+    if (activeCount >= maxElements) return;
+
     const element = document.createElement("div");
     element.className = "floating-element";
     element.textContent = elements[Math.floor(Math.random() * elements.length)];
@@ -29,17 +65,28 @@ function createFloatingElements() {
     element.style.animationDuration = 10 + Math.random() * 4 + "s";
     element.style.animationDelay = Math.random() * 2 + "s";
     container.appendChild(element);
+    activeCount++;
 
-    setTimeout(() => element.remove(), 14000);
-  }, 1800);
+    setTimeout(() => {
+      element.remove();
+      activeCount--;
+    }, 14000);
+  }, interval);
 }
 
 /* Create magic sparkles */
 function createMagicSparkles() {
+  if (reduceEffects) return; // Skip on mobile for better performance
+
   const container = document.getElementById("magicSparkles");
-  const sparkles = ["✨", "⭐", "💫", "🌟", "⚡", "💥"];
+  const sparkles = ["✨", "⭐", "💫", "🌟"];
+  const interval = reduceEffects ? 2400 : 1200;
+  const maxSparkles = reduceEffects ? 3 : 8;
+  let activeCount = 0;
 
   setInterval(() => {
+    if (activeCount >= maxSparkles) return;
+
     const sparkle = document.createElement("div");
     sparkle.className = "magic-sparkle";
     sparkle.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
@@ -48,17 +95,24 @@ function createMagicSparkles() {
     sparkle.style.animationDuration = 3 + Math.random() * 2 + "s";
     sparkle.style.animationDelay = Math.random() * 1 + "s";
     container.appendChild(sparkle);
+    activeCount++;
 
-    setTimeout(() => sparkle.remove(), 5000);
-  }, 1200);
+    setTimeout(() => {
+      sparkle.remove();
+      activeCount--;
+    }, 5000);
+  }, interval);
 }
 
 // Initialize background effects
 createStarField();
-createFloatingElements();
-createMagicSparkles();
+if (!reduceEffects) {
+  createFloatingElements();
+  createMagicSparkles();
+}
 
 /* Floating Hearts */
+let heartInterval;
 function createHeart() {
   const heart = document.createElement("div");
   heart.classList.add("floating-heart");
@@ -68,9 +122,12 @@ function createHeart() {
   document.body.appendChild(heart);
   setTimeout(() => heart.remove(), 4000);
 }
-setInterval(createHeart, 600);
+if (!reduceEffects) {
+  heartInterval = setInterval(createHeart, 1200);
+}
 
 /* Balloon Animation */
+let balloonInterval;
 function createBalloon() {
   const b = document.createElement("div");
   b.classList.add("balloon");
@@ -79,7 +136,9 @@ function createBalloon() {
   document.body.appendChild(b);
   setTimeout(() => b.remove(), 5000);
 }
-setInterval(createBalloon, 1500);
+if (!reduceEffects) {
+  balloonInterval = setInterval(createBalloon, 2500);
+}
 
 /* Cinematic Entrance */
 const observer = new IntersectionObserver(
@@ -171,20 +230,47 @@ const giftBox = document.getElementById("giftBox");
 const closeBtn = document.querySelector(".close-btn");
 
 let hoverTimeout;
+let isModalOpen = false;
 
-giftBox.addEventListener("mouseenter", () => {
-  hoverTimeout = setTimeout(() => {
-    modal.style.display = "block";
-  }, 1200);
-});
+// Optimize for mobile: use click/tap instead of hover
+const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
 
-giftBox.addEventListener("mouseleave", () => {
-  clearTimeout(hoverTimeout);
-});
+if (isTouchDevice) {
+  // Mobile: open on tap
+  giftBox.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (!isModalOpen) {
+      modal.style.display = "block";
+      isModalOpen = true;
+      document.body.style.overflow = "hidden"; // Prevent scroll
+    }
+  });
+} else {
+  // Desktop: open on hover
+  giftBox.addEventListener("mouseenter", () => {
+    hoverTimeout = setTimeout(() => {
+      modal.style.display = "block";
+      isModalOpen = true;
+    }, 1200);
+  });
 
-closeBtn.onclick = () => (modal.style.display = "none");
+  giftBox.addEventListener("mouseleave", () => {
+    clearTimeout(hoverTimeout);
+  });
+}
+
+closeBtn.onclick = () => {
+  modal.style.display = "none";
+  isModalOpen = false;
+  document.body.style.overflow = ""; // Restore scroll
+};
+
 window.onclick = (e) => {
-  if (e.target == modal) modal.style.display = "none";
+  if (e.target == modal) {
+    modal.style.display = "none";
+    isModalOpen = false;
+    document.body.style.overflow = ""; // Restore scroll
+  }
 };
 
 /* Romantic Video Orchestrator */
@@ -241,7 +327,7 @@ window.onclick = (e) => {
 
   // Bokeh
   (function initBokeh() {
-    const count = 16;
+    const count = reduceEffects ? 8 : 16;
     for (let i = 0; i < count; i++) {
       const s = document.createElement("span");
       const size = rand(60, 160);
@@ -259,7 +345,7 @@ window.onclick = (e) => {
   // Lilies
   (function initLilies() {
     const emojis = ["🪷", "🌸", "💮", "🌺"];
-    const count = 6;
+    const count = reduceEffects ? 3 : 6;
     for (let i = 0; i < count; i++) {
       const l = document.createElement("div");
       l.className = "lily";
@@ -273,6 +359,7 @@ window.onclick = (e) => {
   })();
 
   // Petals (drifting)
+  let petalTimer;
   function spawnPetal() {
     const p = document.createElement("div");
     p.className = "petal";
@@ -284,11 +371,12 @@ window.onclick = (e) => {
     petals.appendChild(p);
     setTimeout(() => p.remove(), 14000);
   }
-  const petalTimer = setInterval(spawnPetal, 1200);
+  const petalInterval = reduceEffects ? 2400 : 1200;
+  petalTimer = setInterval(spawnPetal, petalInterval);
 
   // Sparkles
   function initSparkles() {
-    const count = 36;
+    const count = reduceEffects ? 18 : 36;
     for (let i = 0; i < count; i++) {
       const sp = document.createElement("div");
       sp.className = "sparkle";
@@ -303,7 +391,7 @@ window.onclick = (e) => {
 
   // Hearts pulse
   (function initHearts() {
-    const count = 10;
+    const count = reduceEffects ? 5 : 10;
     for (let i = 0; i < count; i++) {
       const h = document.createElement("div");
       h.className = "heart";
@@ -315,20 +403,28 @@ window.onclick = (e) => {
     }
   })();
 
-  // Film grain
+  // Film grain (reduce frame rate on mobile)
   let grainRAF;
-  function drawGrain() {
-    const { width, height } = grainCanvas;
-    const imageData = grainCtx.createImageData(width, height);
-    const data = imageData.data;
-    for (let i = 0; i < data.length; i += 4) {
-      const val = 220 + Math.random() * 35; // light grain
-      data[i] = val;
-      data[i + 1] = val - 8;
-      data[i + 2] = val - 12;
-      data[i + 3] = 8; // very low alpha
+  let lastGrainTime = 0;
+  const grainInterval = reduceEffects ? 100 : 50; // Reduce grain updates on mobile
+
+  function drawGrain(timestamp) {
+    if (!lastGrainTime || timestamp - lastGrainTime >= grainInterval) {
+      const { width, height } = grainCanvas;
+      const imageData = grainCtx.createImageData(width, height);
+      const data = imageData.data;
+      const step = reduceEffects ? 8 : 4; // Skip more pixels on mobile
+
+      for (let i = 0; i < data.length; i += step) {
+        const val = 220 + Math.random() * 35;
+        data[i] = val;
+        data[i + 1] = val - 8;
+        data[i + 2] = val - 12;
+        data[i + 3] = reduceEffects ? 6 : 8;
+      }
+      grainCtx.putImageData(imageData, 0, 0);
+      lastGrainTime = timestamp;
     }
-    grainCtx.putImageData(imageData, 0, 0);
     grainRAF = requestAnimationFrame(drawGrain);
   }
 
@@ -416,14 +512,24 @@ const phrases = [
   document.getElementById("phrase1"),
   document.getElementById("phrase2"),
 ];
-window.addEventListener("scroll", () => {
-  const scrollY = window.scrollY + window.innerHeight / 1.5;
-  phrases.forEach((p, i) => {
-    const top = p.offsetTop;
-    if (scrollY > top) {
-      p.classList.add("show");
-    } else {
-      p.classList.remove("show");
-    }
-  });
-});
+
+// Debounce scroll events for better performance
+let scrollTimeout;
+function handleScroll() {
+  if (scrollTimeout) return;
+
+  scrollTimeout = setTimeout(() => {
+    const scrollY = window.scrollY + window.innerHeight / 1.5;
+    phrases.forEach((p, i) => {
+      const top = p.offsetTop;
+      if (scrollY > top) {
+        p.classList.add("show");
+      } else {
+        p.classList.remove("show");
+      }
+    });
+    scrollTimeout = null;
+  }, 100);
+}
+
+window.addEventListener("scroll", handleScroll, { passive: true });
