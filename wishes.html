@@ -3,9 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#ff4fa3" />
     <title>Happy Birthday, Premii ❤️</title>
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>❤️</text></svg>">
    <link rel="stylesheet" href="css/wishes.css" />
+   <link rel="preload" href="./assets/image.jpg" as="image" />
   </head>
   <body>
     <div class="star-field" id="starField"></div>
@@ -24,6 +26,7 @@
             class="heartbeat"
             src="./assets/image.jpg"
             alt="Premii Picture"
+            loading="lazy"
           />
         </div>
       </div>
@@ -83,11 +86,11 @@
             class="rv-video"
             id="wishVideo"
             src="assets/video.mp4"
-            autoplay
             muted
             loop
             playsinline
-            preload="auto"
+            preload="none"
+            loading="lazy"
           ></video>
           <div class="rv-layer rv-camera">
             <div class="bokeh" id="rvBokeh"></div>
@@ -159,3 +162,4 @@
     <script src="js/wishes.js"></script>
   </body>
 </html>
+
