@@ -4,22 +4,68 @@ const storedHash =
 const input = document.getElementById("pwd");
 const eye = document.getElementById("toggleEye");
 
-// Create floating hearts
+// Add particle effect on input
+function createParticles(e) {
+  const x = e.clientX;
+  const y = e.clientY;
+  for (let i = 0; i < 3; i++) {
+    const particle = document.createElement("div");
+    particle.style.position = "fixed";
+    particle.style.left = x + "px";
+    particle.style.top = y + "px";
+    particle.style.pointerEvents = "none";
+    particle.style.fontSize = "20px";
+    particle.style.opacity = "1";
+    particle.textContent = "✨";
+    particle.style.animation = `particleFade 1s ease-out forwards`;
+    particle.style.zIndex = "9998";
+    document.body.appendChild(particle);
+    
+    const angle = (Math.PI * 2 * i) / 3;
+    const vx = Math.cos(angle) * 5;
+    const vy = Math.sin(angle) * 5 - 3;
+    
+    const startTime = Date.now();
+    const animate = () => {
+      const elapsed = Date.now() - startTime;
+      const progress = Math.min(elapsed / 1000, 1);
+      particle.style.left = (x + vx * elapsed / 20) + "px";
+      particle.style.top = (y + vy * elapsed / 20 - progress * 50) + "px";
+      particle.style.opacity = 1 - progress;
+      if (progress < 1) requestAnimationFrame(animate);
+      else particle.remove();
+    };
+    animate();
+  }
+}
+
+// Add CSS animation for particles
+const style = document.createElement("style");
+style.textContent = `
+  @keyframes particleFade {
+    to { opacity: 0; }
+  }
+`;
+document.head.appendChild(style);
+
+// Create floating hearts with more variety
 function createFloatingHearts() {
   const container = document.getElementById("floatingHearts");
-  const hearts = ["❤️", "💕", "💖", "💗", "💝", "💞"];
+  const hearts = ["❤️", "💕", "💖", "💗", "💝", "💞", "💓", "💟"];
+  const colors = ["#ff6b9d", "#ff4fa3", "#ff2f7a", "#ff709d"];
 
   setInterval(() => {
     const heart = document.createElement("div");
     heart.className = "floating-heart";
     heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
     heart.style.left = Math.random() * 100 + "%";
-    heart.style.animationDuration = 6 + Math.random() * 4 + "s";
+    heart.style.animationDuration = 7 + Math.random() * 5 + "s";
     heart.style.animationDelay = Math.random() * 2 + "s";
+    heart.style.color = colors[Math.floor(Math.random() * colors.length)];
     container.appendChild(heart);
 
-    setTimeout(() => heart.remove(), 10000);
-  }, 2000);
+    setTimeout(() => heart.remove(), 12000);
+  }, 1500);
 }
 
 // Create sparkles
@@ -49,11 +95,27 @@ eye.onclick = () => {
   if (input.type === "password") {
     input.type = "text";
     eye.classList.add("active");
+    createParticles({ clientX: eye.getBoundingClientRect().x, clientY: eye.getBoundingClientRect().y });
   } else {
     input.type = "password";
     eye.classList.remove("active");
+    createParticles({ clientX: eye.getBoundingClientRect().x, clientY: eye.getBoundingClientRect().y });
   }
 };
+
+// Add input focus effects
+input.addEventListener("focus", () => {
+  input.parentElement.style.transform = "scale(1.02)";
+});
+
+input.addEventListener("blur", () => {
+  input.parentElement.style.transform = "scale(1)";
+});
+
+// Add sparkle on click
+input.addEventListener("click", (e) => {
+  createParticles(e);
+});
 
 async function sha256Hex(msg) {
   const b = new TextEncoder().encode(msg);
@@ -85,17 +147,49 @@ async function tryUnlock() {
   }
   const hex = await sha256Hex(val);
   if (hex === storedHash) {
+    // Create confetti effect
+    createConfetti();
     // Store access token in sessionStorage
     sessionStorage.setItem("premii_unlocked", "true");
     showPopup(
       "Unlocked ✨",
       "The lock opened...your wish is ready. Redirecting to the surprise…"
     );
-    setTimeout(() => (location.href = "wish.html"), 2000);
+    setTimeout(() => (location.href = "calendar.html"), 2000);
   } else {
     showPopup("Not yet ❤️", "That wasn't it, my love...try again 🌸");
   }
 }
+
+function createConfetti() {
+  const confettiPieces = ["🎉", "💕", "✨", "💖", "🌸", "💝", "⭐", "💞"];
+  for (let i = 0; i < 30; i++) {
+    const confetti = document.createElement("div");
+    confetti.style.position = "fixed";
+    confetti.style.left = Math.random() * 100 + "%";
+    confetti.style.top = "-10px";
+    confetti.style.fontSize = "20px";
+    confetti.style.pointerEvents = "none";
+    confetti.style.zIndex = "9999";
+    confetti.textContent = confettiPieces[Math.floor(Math.random() * confettiPieces.length)];
+    confetti.style.animation = `confettiFall ${2 + Math.random() * 1.5}s ease-in forwards`;
+    confetti.style.opacity = "1";
+    document.body.appendChild(confetti);
+    
+    setTimeout(() => confetti.remove(), 4000);
+  }
+}
+
+const confettiStyle = document.createElement("style");
+confettiStyle.textContent = `
+  @keyframes confettiFall {
+    to {
+      transform: translateY(100vh) rotate(720deg);
+      opacity: 0;
+    }
+  }
+`;
+document.head.appendChild(confettiStyle);
 
 function showPopup(title, msg) {
   pTitle.textContent = title;

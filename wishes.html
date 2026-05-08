@@ -10,132 +10,193 @@
    <link rel="preload" href="./assets/image.jpg" as="image" />
   </head>
   <body>
+    <!-- Background Effects -->
     <div class="star-field" id="starField"></div>
     <div class="floating-elements" id="floatingElements"></div>
     <div class="magic-sparkles" id="magicSparkles"></div>
-    <div class="header"></div>
-    <div class="subtext">
-      Today is your day…and my whole heart is celebrating you.
-    </div>
+    
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="header"></div>
+      <div class="subtext">
+        Today is your day…and my whole heart is celebrating you.
+      </div>
+      <div class="hero-decoration">
+        <span class="deco-item">💖</span>
+        <span class="deco-item">✨</span>
+        <span class="deco-item">💖</span>
+      </div>
+    </section>
+
     <div class="container">
-      <div class="block cinematic">
-        <div class="block-title">🌸 My Beautiful Wiffeey</div>
-        <div class="image-frame">
-          <img
-            id="premiiImg"
-            class="heartbeat"
-            src="./assets/image.jpg"
-            alt="Premii Picture"
-            loading="lazy"
-          />
-        </div>
-      </div>
-      <div class="block cinematic" id="storyBlock">
-        <div class="block-title">💖 Our Story, My Shokher Narii</div>
-        <div class="story-text story-lines" id="storyLines">
-          <span class="story-line">
-            <span class="story-date">15 May 2002</span>: the day my Premii, my
-            Bibijan, my sweetest Lopai came into this world
-            <span class="story-heart">🎂❤</span>
-          </span>
-
-          <span class="story-line"
-            ><span class="story-date">14 February 2020</span>: the day I first
-            met the girl who would become my entire universe
-            <span class="story-heart">❤</span></span
-          >
-          <span class="story-line"
-            ><span class="story-date">17 June 2025</span>: the day our love
-            began; since then every heartbeat carries your name
-            <span class="story-heart">💗</span></span
-          >
-          <span class="story-line"
-            ><span class="story-date">1 July 2025</span>: our first date; the
-            first step into the forever we are building together
-            <span class="story-heart">💞</span></span
-          >
-          <span class="story-divider"></span>
-          <span class="story-line"
-            >You, <span class="story-name">Farzana Hossain Lopa</span>: my
-            Premii, Pakhiii, Golappp, Sweetheart, Dreamy, Queen, Farzan, the
-            love of my lifetime.</span
-          >
-          <span class="story-line">Our love language:</span>
-          <span class="story-line">
-            <span class="love-language">Valobashiii Valobashaa</span>
-            <span class="love-language">Valobashaa Valobashiii</span>
-            <span class="love-language"
-              >Valobasharr Valobashaa Valobashiii</span
-            >
-
-            <span class="love-language">Loveee, oh my loveee</span>
-            <span class="love-language">Loveee and only loveee</span>
-            <span class="love-language">The loveee of my loveee</span>
-            <span class="love-language">The deepest loveee</span>
-          </span>
-          <span class="story-line emphasis"
-            >You are my Lili flower, my happiness, my everything.</span
-          >
-        </div>
-      </div>
-
-      <div class="block cinematic">
-        <div class="block-title">🎥 It's for you</div>
-        <div class="romantic-video" id="romanticVideo">
-          <video
-            class="rv-video"
-            id="wishVideo"
-            src="assets/video.mp4"
-            muted
-            loop
-            playsinline
-            preload="none"
-            loading="lazy"
-          ></video>
-          <div class="rv-layer rv-camera">
-            <div class="bokeh" id="rvBokeh"></div>
-            <div class="lilies" id="rvLilies"></div>
-            <div class="petals" id="rvPetals"></div>
-            <div class="sparkles" id="rvSparkles"></div>
-            <div class="rv-hearts" id="rvHearts"></div>
+      <!-- Photo Section -->
+      <section class="content-section photo-section">
+        <div class="block cinematic">
+          <div class="block-title">🌸 My Beautiful Wiffeey</div>
+          <div class="image-frame">
+            <img
+              id="premiiImg"
+              class="heartbeat"
+              src="./assets/image.jpg"
+              alt="Premii Picture"
+              loading="lazy"
+            />
           </div>
-          <div class="rv-text" id="rvText">
-            <div class="line" id="rvLine"></div>
-          </div>
-          <canvas class="film-grain" id="rvGrain"></canvas>
-          <button class="rv-sound" id="rvSound" aria-label="Toggle sound">
-            <span id="soundIcon">🔇</span>
-            <span id="soundText">Sound Off</span>
-          </button>
-          <button class="rv-replay" id="rvReplay" aria-label="Replay">
-            ↻ Replay
-          </button>
-          </button>
+          <div class="photo-caption">The reason my heart beats</div>
         </div>
-      </div>
+      </section>
 
-      <div style="text-align: center; margin-top: 60px">
-        <div class="gift-box-container">
-          <div class="box">
-            <div class="box-body" id="giftBox">
-              <div class="content-reveal">💌</div>
-              <div class="box-lid">
-                <div class="box-bowtie"></div>
+      <!-- Story Timeline Section -->
+      <section class="content-section story-section">
+        <div class="block cinematic" id="storyBlock">
+          <div class="block-title">💖 Our Story, My Shokher Narii</div>
+          <div class="story-container">
+            <div class="story-text story-lines" id="storyLines">
+              <span class="story-line">
+                <span class="story-date">15 May 2002</span>: the day my Premii, my
+                Bibijan, my sweetest Lopai came into this world
+                <span class="story-heart">🎂❤</span>
+              </span>
+
+              <span class="story-line"
+                ><span class="story-date">14 February 2020</span>: the day I first
+                met the girl who would become my entire universe
+                <span class="story-heart">❤</span></span
+              >
+              <span class="story-line"
+                ><span class="story-date">17 June 2025</span>: the day our love
+                began; since then every heartbeat carries your name
+                <span class="story-heart">💗</span></span
+              >
+              <span class="story-line"
+                ><span class="story-date">1 July 2025</span>: our first date; the
+                first step into the forever we are building together
+                <span class="story-heart">💞</span></span
+              >
+              <span class="story-divider"></span>
+              <span class="story-line"
+                >You, <span class="story-name">Farzana Hossain Lopa</span>: my
+                Premii, Pakhiii, Golappp, Sweetheart, Dreamy, Queen, Farzan, the
+                love of my lifetime.</span
+              >
+              <span class="story-line">Our love language:</span>
+              <span class="story-line love-languages-container">
+                <span class="love-language">Valobashiii Valobashaa</span>
+                <span class="love-language">Valobashaa Valobashiii</span>
+                <span class="love-language"
+                  >Valobasharr Valobashaa Valobashiii</span
+                >
+
+                <span class="love-language">Loveee, oh my loveee</span>
+                <span class="love-language">Loveee and only loveee</span>
+                <span class="love-language">The loveee of my loveee</span>
+                <span class="love-language">The deepest loveee</span>
+              </span>
+              <span class="story-divider"></span>
+              <span class="story-line emphasis"
+                >You are my Lili flower, my happiness, my everything.</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Video Section -->
+      <section class="content-section video-section">
+        <div class="block cinematic">
+          <div class="block-title">🎥 A Moment Just For You</div>
+          <div class="romantic-video" id="romanticVideo">
+            <video
+              class="rv-video"
+              id="wishVideo"
+              src="assets/video.mp4"
+              muted
+              loop
+              playsinline
+              preload="none"
+              loading="lazy"
+            ></video>
+            <div class="rv-layer rv-camera">
+              <div class="bokeh" id="rvBokeh"></div>
+              <div class="lilies" id="rvLilies"></div>
+              <div class="petals" id="rvPetals"></div>
+              <div class="sparkles" id="rvSparkles"></div>
+              <div class="rv-hearts" id="rvHearts"></div>
+            </div>
+            <div class="rv-text" id="rvText">
+              <div class="line" id="rvLine"></div>
+            </div>
+            <canvas class="film-grain" id="rvGrain"></canvas>
+            <button class="rv-sound" id="rvSound" aria-label="Toggle sound">
+              <span id="soundIcon">🔇</span>
+              <span id="soundText">Sound Off</span>
+            </button>
+            <button class="rv-replay" id="rvReplay" aria-label="Replay">
+              ↻ Replay
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Gift Section -->
+      <section class="content-section gift-section">
+        <div class="gift-header">
+          <h2 class="gift-title">💌 A Special Message For You</h2>
+          <p class="gift-subtitle">Hover or tap to reveal my heart</p>
+        </div>
+        <div style="text-align: center; margin-top: 40px">
+          <div class="gift-box-container">
+            <div class="box">
+              <div class="box-body" id="giftBox">
+                <div class="content-reveal">💌</div>
+                <div class="box-lid">
+                  <div class="box-bowtie"></div>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="love-tag">Forever yours — Your Jamai, Your Baby ❤️</div>
-      
-      <div style="text-align: center; margin-top: 30px; margin-bottom: 40px;">
-        <a href="cake.html" class="cake-button">
-          <span class="cake-icon">🎂</span>
-          <span>Make a Wish!</span>
-        </a>
-      </div>
+      <!-- Love Message Section -->
+      <section class="content-section love-message-section">
+        <div class="love-message-container">
+          <div class="love-message-item">
+            <div class="love-icon">❤️</div>
+            <div class="love-message-text">You are my greatest love story</div>
+          </div>
+          <div class="love-message-item">
+            <div class="love-icon">💕</div>
+            <div class="love-message-text">Every moment with you is a blessing</div>
+          </div>
+          <div class="love-message-item">
+            <div class="love-icon">💖</div>
+            <div class="love-message-text">Forever with you is my only wish</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Action Section -->
+      <section class="content-section action-section">
+        <div class="action-container">
+          <a href="cake.html" class="cake-button">
+            <span class="cake-icon">🎂</span>
+            <span>Make a Wish & Cut the Cake!</span>
+          </a>
+        </div>
+      </section>
+
+      <!-- Closing Message -->
+      <section class="content-section closing-section">
+        <div class="love-tag">
+          <span class="tag-icon">💝</span>
+          Forever yours — Your Jamai, Your Baby ❤️
+          <span class="tag-icon">💝</span>
+        </div>
+      </section>
     </div>
+
+    <!-- Love Modal -->
     <div id="loveModal" class="modal">
       <div class="modal-content">
         <div class="modal-header">
@@ -147,18 +208,18 @@
             <img src="assets/iloveyou.gif" alt="Love Kiss" class="love-kiss-gif">
           </div>
           <div class="letter-text">
-            
-            
             <div class="letter-signature"></div>
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Scroll-triggered Love Phrases -->
     <div class="love-phrase" id="phrase1">
       আমার হৃদয় তোমার জন্য ধুকধুক করছে ❤️
     </div>
     <div class="love-phrase" id="phrase2">প্রেমের আলো তোমার চোখে জ্বলে 🔥</div>
+
     <script src="js/wishes.js"></script>
   </body>
 </html>

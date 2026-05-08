@@ -1,0 +1,655 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Pacifico&display=swap");
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background: radial-gradient(circle at 20% 30%, #ffd6e8, transparent 50%),
+    radial-gradient(circle at 80% 70%, #ffe8f5, transparent 50%),
+    radial-gradient(circle at 50% 100%, #ffccdd, transparent 60%),
+    linear-gradient(
+      135deg,
+      #ffd6e8 0%,
+      #fff0f7 25%,
+      #ffe8ef 50%,
+      #fff5f9 75%,
+      #ffd6e8 100%
+    );
+  background-size: 400% 400%;
+  color: #4a2c2c;
+  overflow-x: hidden;
+  position: relative;
+  animation: gradientShift 20s ease-in-out infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+/* Star field background */
+.star-field {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 3px rgba(255, 255, 255, 0.8);
+  animation: starTwinkle 3s ease-in-out infinite;
+}
+
+@keyframes starTwinkle {
+  0%, 100% {
+    opacity: 0.2;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.8);
+  }
+}
+
+/* Floating elements */
+.floating-elements {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.floating-element {
+  position: absolute;
+  font-size: 24px;
+  animation: floatUpElement 12s ease-out infinite;
+  opacity: 0;
+  filter: drop-shadow(0 0 6px rgba(255, 107, 157, 0.5));
+}
+
+@keyframes floatUpElement {
+  0% {
+    opacity: 0;
+    transform: translateY(0) rotate(0deg) scale(0.5);
+  }
+  10% {
+    opacity: 0.85;
+  }
+  90% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-120vh) rotate(360deg) scale(1.3);
+  }
+}
+
+/* Magic sparkles */
+.magic-sparkles {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.magic-sparkle {
+  position: absolute;
+  font-size: 18px;
+  animation: sparkleGlow 4s ease-in-out infinite;
+  opacity: 0;
+}
+
+@keyframes sparkleGlow {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+}
+
+.container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+  position: relative;
+  z-index: 10;
+}
+
+/* Intro Section */
+.intro-section {
+  text-align: center;
+  padding: 40px 20px;
+  animation: introFadeIn 1s ease-out;
+}
+
+@keyframes introFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.main-title {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, #ff4fa3, #e24a8d, #ff6b9d, #ff4fa3);
+  background-size: 200% 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 15px;
+  animation: titleGradient 6s ease infinite;
+  letter-spacing: 1.5px;
+}
+
+@keyframes titleGradient {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.subtitle {
+  font-size: 1.3rem;
+  color: #b76e79;
+  font-weight: 500;
+  font-style: italic;
+  margin: 0;
+  animation: subtitleFadeIn 1s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+@keyframes subtitleFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Calendar Section */
+.calendar-section {
+  margin: 50px 0;
+  animation: sectionSlideIn 0.8s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+@keyframes sectionSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+@media (max-width: 768px) {
+  .card-wrapper {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+}
+
+/* Calendar Card */
+.calendar-card {
+  background: linear-gradient(135deg, rgba(255, 248, 240, 0.98), rgba(255, 240, 247, 0.98));
+  backdrop-filter: blur(12px);
+  border: 2px solid rgba(255, 182, 193, 0.4);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: 0 12px 40px rgba(255, 107, 157, 0.25);
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 4px 15px rgba(255, 107, 157, 0.15));
+}
+
+.calendar-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 60px rgba(255, 107, 157, 0.35);
+}
+
+.calendar-header {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 800;
+  color: #ff4fa3;
+  margin-bottom: 25px;
+  letter-spacing: 2px;
+  animation: headerBounce 2s ease-in-out infinite;
+}
+
+@keyframes headerBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.day-header {
+  text-align: center;
+  font-weight: 700;
+  color: #b76e79;
+  font-size: 0.9rem;
+  padding: 8px;
+  letter-spacing: 0.5px;
+}
+
+.date {
+  text-align: center;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: 500;
+  color: #5b3434;
+  background: rgba(255, 255, 255, 0.6);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+
+.date:hover {
+  background: rgba(255, 182, 193, 0.2);
+  transform: scale(1.1);
+  box-shadow: 0 4px 12px rgba(255, 107, 157, 0.2);
+}
+
+.date.birthday {
+  background: linear-gradient(135deg, #ff4fa3, #ff6b9d);
+  color: white;
+  font-weight: 700;
+  box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+  animation: birthdayPulse 1.5s ease-in-out infinite;
+  transform: scale(1.3);
+}
+
+@keyframes birthdayPulse {
+  0%, 100% {
+    box-shadow: 0 6px 20px rgba(255, 107, 157, 0.4);
+  }
+  50% {
+    box-shadow: 0 8px 30px rgba(255, 107, 157, 0.6);
+  }
+}
+
+.empty {
+  padding: 12px;
+}
+
+/* Photo Card */
+.photo-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: photoFadeIn 1s ease-out 0.4s forwards;
+  opacity: 0;
+}
+
+@keyframes photoFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.photo-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 3/4;
+  border-radius: 25px;
+  overflow: hidden;
+  box-shadow: 0 16px 50px rgba(255, 107, 157, 0.3);
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 3px solid rgba(255, 255, 255, 0.8);
+  background: linear-gradient(135deg, rgba(255, 248, 240, 0.9), rgba(255, 240, 247, 0.9));
+}
+
+.photo-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.3), transparent 50%);
+  z-index: 5;
+  pointer-events: none;
+}
+
+.photo-wrapper:hover {
+  transform: translateY(-15px) scale(1.05);
+  box-shadow: 0 24px 70px rgba(255, 107, 157, 0.4);
+}
+
+.birthday-photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  filter: brightness(1.05) contrast(1.02);
+  transition: all 0.4s ease;
+}
+
+.photo-wrapper:hover .birthday-photo {
+  filter: brightness(1.1) contrast(1.05) saturate(1.1);
+}
+
+.photo-text {
+  text-align: center;
+  margin-top: 30px;
+  animation: textSlideIn 1s ease-out 0.6s forwards;
+  opacity: 0;
+}
+
+.photo-text h2 {
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  color: #ff4fa3;
+  margin: 0 0 5px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.photo-text p {
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  color: #b76e79;
+  margin: 0;
+  font-style: italic;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+@keyframes textSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Countdown Section */
+.countdown-section {
+  margin: 60px 0;
+  animation: countdownFadeIn 1s ease-out 0.5s forwards;
+  opacity: 0;
+}
+
+@keyframes countdownFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.countdown-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 50px;
+  padding: 40px;
+  background: linear-gradient(135deg, rgba(255, 248, 240, 0.95), rgba(255, 240, 247, 0.95));
+  backdrop-filter: blur(10px);
+  border: 2px solid rgba(255, 182, 193, 0.3);
+  border-radius: 25px;
+  box-shadow: 0 12px 40px rgba(255, 107, 157, 0.2);
+}
+
+@media (max-width: 600px) {
+  .countdown-container {
+    gap: 30px;
+    flex-direction: column;
+  }
+}
+
+.countdown-item {
+  text-align: center;
+  animation: itemBounce 2s ease-in-out infinite;
+}
+
+.countdown-item:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.countdown-item:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+@keyframes itemBounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.countdown-number {
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 800;
+  background: linear-gradient(135deg, #ff4fa3, #e24a8d);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 10px;
+}
+
+.countdown-label {
+  font-size: 1rem;
+  color: #b76e79;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+.countdown-separator {
+  font-size: 2.5rem;
+  animation: separatorPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes separatorPulse {
+  0%, 100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+}
+
+/* Celebration Section */
+.celebration-section {
+  margin: 60px 0;
+  animation: celebrationFadeIn 1s ease-out 0.7s forwards;
+  opacity: 0;
+}
+
+@keyframes celebrationFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.celebration-text {
+  text-align: center;
+  padding: 40px;
+}
+
+.celebration-line {
+  font-size: clamp(1.1rem, 2vw, 1.5rem);
+  color: #5b3434;
+  font-weight: 600;
+  margin: 15px 0;
+  line-height: 1.8;
+  letter-spacing: 0.5px;
+  animation: lineReveal 1s ease-out forwards;
+  opacity: 0;
+}
+
+.celebration-line:nth-child(1) {
+  animation-delay: 0.8s;
+}
+
+.celebration-line:nth-child(2) {
+  animation-delay: 1s;
+}
+
+.celebration-line:nth-child(3) {
+  animation-delay: 1.2s;
+}
+
+@keyframes lineReveal {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Navigation Section */
+.nav-section {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 40px 20px 60px;
+  flex-wrap: wrap;
+  animation: navFadeIn 1s ease-out 1.4s forwards;
+  opacity: 0;
+}
+
+@keyframes navFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.nav-button {
+  padding: 16px 35px;
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 50px;
+  transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  letter-spacing: 0.5px;
+  box-shadow: 0 8px 25px rgba(255, 107, 157, 0.3);
+  border: 2px solid transparent;
+}
+
+.prev-button {
+  background: linear-gradient(135deg, #f0f0f0, #ffffff);
+  color: #b76e79;
+  border: 2px solid rgba(255, 107, 157, 0.3);
+}
+
+.prev-button:hover {
+  transform: translateY(-5px) scale(1.05);
+  background: linear-gradient(135deg, #ffffff, #f5f5f5);
+  box-shadow: 0 12px 35px rgba(183, 110, 121, 0.3);
+  border-color: rgba(255, 107, 157, 0.5);
+}
+
+.next-button {
+  background: linear-gradient(135deg, #ff4fa3, #ff6b9d);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.next-button:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 12px 35px rgba(255, 107, 157, 0.5);
+  border-color: rgba(255, 255, 255, 0.6);
+  filter: brightness(1.1);
+}
+
+/* Mobile Optimizations */
+@media (max-width: 600px) {
+  .container {
+    padding: 15px;
+  }
+
+  .calendar-card {
+    padding: 20px;
+  }
+
+  .calendar-grid {
+    gap: 8px;
+  }
+
+  .date {
+    padding: 8px;
+    font-size: 0.85rem;
+  }
+
+  .countdown-container {
+    padding: 30px;
+  }
+
+  .nav-section {
+    gap: 15px;
+  }
+
+  .nav-button {
+    padding: 12px 25px;
+    font-size: 0.95rem;
+  }
+}

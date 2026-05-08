@@ -50,9 +50,9 @@ function createFloatingElements() {
   if (reduceEffects) return; // Skip on mobile for better performance
 
   const container = document.getElementById("floatingElements");
-  const elements = ["❤️", "💕", "💖", "💗", "🌸", "🌺", "🌹", "💝", "💞", "🦋"];
-  const interval = reduceEffects ? 3000 : 1800;
-  const maxElements = reduceEffects ? 5 : 10;
+  const elements = ["❤️", "💕", "💖", "💗", "🌸", "🌺", "🌹", "💝", "💞", "🦋", "✨"];
+  const interval = reduceEffects ? 3000 : 1500;
+  const maxElements = reduceEffects ? 5 : 12;
   let activeCount = 0;
 
   setInterval(() => {
@@ -62,7 +62,7 @@ function createFloatingElements() {
     element.className = "floating-element";
     element.textContent = elements[Math.floor(Math.random() * elements.length)];
     element.style.left = Math.random() * 100 + "%";
-    element.style.animationDuration = 10 + Math.random() * 4 + "s";
+    element.style.animationDuration = 12 + Math.random() * 5 + "s";
     element.style.animationDelay = Math.random() * 2 + "s";
     container.appendChild(element);
     activeCount++;
@@ -70,7 +70,7 @@ function createFloatingElements() {
     setTimeout(() => {
       element.remove();
       activeCount--;
-    }, 14000);
+    }, 17000);
   }, interval);
 }
 
@@ -79,9 +79,9 @@ function createMagicSparkles() {
   if (reduceEffects) return; // Skip on mobile for better performance
 
   const container = document.getElementById("magicSparkles");
-  const sparkles = ["✨", "⭐", "💫", "🌟"];
-  const interval = reduceEffects ? 2400 : 1200;
-  const maxSparkles = reduceEffects ? 3 : 8;
+  const sparkles = ["✨", "⭐", "💫", "🌟", "💎", "🔮"];
+  const interval = reduceEffects ? 2400 : 1000;
+  const maxSparkles = reduceEffects ? 3 : 10;
   let activeCount = 0;
 
   setInterval(() => {
@@ -92,7 +92,7 @@ function createMagicSparkles() {
     sparkle.textContent = sparkles[Math.floor(Math.random() * sparkles.length)];
     sparkle.style.left = Math.random() * 100 + "%";
     sparkle.style.top = Math.random() * 100 + "%";
-    sparkle.style.animationDuration = 3 + Math.random() * 2 + "s";
+    sparkle.style.animationDuration = 3 + Math.random() * 3 + "s";
     sparkle.style.animationDelay = Math.random() * 1 + "s";
     container.appendChild(sparkle);
     activeCount++;
@@ -100,7 +100,7 @@ function createMagicSparkles() {
     setTimeout(() => {
       sparkle.remove();
       activeCount--;
-    }, 5000);
+    }, 6000);
   }, interval);
 }
 
@@ -157,20 +157,10 @@ document.querySelectorAll(".cinematic").forEach((el) => observer.observe(el));
 const storyLines = document.querySelectorAll("#storyLines .story-line");
 const storyBlock = document.getElementById("storyBlock");
 if (storyBlock && storyLines.length) {
-  const storyObserver = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting) {
-          storyLines.forEach((line, i) =>
-            setTimeout(() => line.classList.add("show"), i * 260)
-          );
-          storyObserver.disconnect();
-        }
-      });
-    },
-    { threshold: 0.35 }
-  );
-  storyObserver.observe(storyBlock);
+  // Show all story lines immediately with staggered animation
+  storyLines.forEach((line, i) => {
+    setTimeout(() => line.classList.add("show"), i * 260);
+  });
 }
 
 /* Typing Header (responsive & dynamic) */
@@ -232,6 +222,35 @@ const closeBtn = document.querySelector(".close-btn");
 let hoverTimeout;
 let isModalOpen = false;
 
+// Create confetti burst for gift box opening
+function createGiftConfetti() {
+  const confettiCount = reduceEffects ? 80 : 150;
+  const emojis = ["🎉", "🎊", "💝", "❤️", "💕", "🌹", "🎁", "✨"];
+
+  for (let i = 0; i < confettiCount; i++) {
+    const confetti = document.createElement("div");
+    confetti.className = "gift-confetti";
+    confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    confetti.style.left = Math.random() * 100 + "%";
+    confetti.style.top = "50%";
+    confetti.style.fontSize = 14 + Math.random() * 16 + "px";
+    confetti.style.opacity = "1";
+    confetti.style.position = "fixed";
+    confetti.style.pointerEvents = "none";
+    confetti.style.zIndex = "10000";
+    confetti.style.animation = `confettiFall ${2 + Math.random() * 1.5}s ease-out forwards`;
+    confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+    // Add random horizontal deviation
+    const tx = (Math.random() - 0.5) * 200;
+    confetti.style.setProperty("--tx", tx + "px");
+
+    document.body.appendChild(confetti);
+
+    setTimeout(() => confetti.remove(), 4000);
+  }
+}
+
 // Optimize for mobile: use click/tap instead of hover
 const isTouchDevice = "ontouchstart" in window || navigator.maxTouchPoints > 0;
 
@@ -240,6 +259,7 @@ if (isTouchDevice) {
   giftBox.addEventListener("click", (e) => {
     e.preventDefault();
     if (!isModalOpen) {
+      createGiftConfetti();
       modal.style.display = "block";
       isModalOpen = true;
       document.body.style.overflow = "hidden"; // Prevent scroll
@@ -249,6 +269,7 @@ if (isTouchDevice) {
   // Desktop: open on hover
   giftBox.addEventListener("mouseenter", () => {
     hoverTimeout = setTimeout(() => {
+      createGiftConfetti();
       modal.style.display = "block";
       isModalOpen = true;
     }, 1200);
@@ -559,3 +580,30 @@ function handleScroll() {
 }
 
 window.addEventListener("scroll", handleScroll, { passive: true });
+
+/* Enhanced Mouse Trail for Interactive Elements */
+if (!reduceEffects) {
+  document.addEventListener("mousemove", (e) => {
+    // Only create trail over interactive elements
+    const interactive = e.target.closest(".cake-button, .box, .image-frame img, .block");
+    if (!interactive) return;
+
+    if (Math.random() > 0.7) {
+      const trail = document.createElement("div");
+      trail.style.position = "fixed";
+      trail.style.left = e.clientX + "px";
+      trail.style.top = e.clientY + "px";
+      trail.style.width = "6px";
+      trail.style.height = "6px";
+      trail.style.borderRadius = "50%";
+      trail.style.background = `hsla(${Math.random() * 60 + 320}, 100%, 60%, 0.8)`;
+      trail.style.pointerEvents = "none";
+      trail.style.zIndex = "9999";
+      trail.style.animation = "fadeOutTrail 1s ease-out forwards";
+      trail.style.boxShadow = "0 0 10px currentColor";
+      document.body.appendChild(trail);
+
+      setTimeout(() => trail.remove(), 1000);
+    }
+  });
+}
