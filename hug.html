@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f06b94" />
+    <title>Hug Room - My Safe Place</title>
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%23f06b94%22/><text x=%2250%22 y=%2270%22 text-anchor=%22middle%22 font-size=%2260%22 fill=%22white%22 font-family=%22Georgia%22>H</text></svg>"
+    />
+    <link rel="stylesheet" href="css/hug.css" />
+  </head>
+  <body>
+    <div class="ambient"></div>
+
+    <main class="wrap">
+      <header class="hero">
+        <p class="eyebrow">When the world gets loud</p>
+        <h1>Hug Room</h1>
+        <p class="lead">
+          I can be tired with problems and tension, but when I hug you everything
+          fades. My energy battery feels full again.
+        </p>
+      </header>
+
+      <section class="hug-card">
+        <div class="video-shell">
+          <div class="video-frame">
+            <video
+              class="hug-video"
+              id="hugVideo"
+              controls
+              playsinline
+              preload="metadata"
+              aria-label="Hug video"
+            >
+              <source src="assets/hug.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+            <div class="safe-overlay">
+              <span class="safe-text">You = My safe place</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="caption">
+          <p>
+            Some days are heavy. Your hug is the quiet that makes everything
+            lighter and puts my heart at home.
+          </p>
+        </div>
+
+        <div class="energy">
+          <div class="energy-label" id="energyLabel">Energy battery</div>
+          <div
+            class="battery"
+            id="battery"
+            role="img"
+            aria-label="Energy battery at rest"
+          >
+            <div class="battery-fill"></div>
+            <div class="battery-cap"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="actions">
+        <a href="wishes.html" class="btn primary">Back to Wishes</a>
+      </section>
+    </main>
+
+    <script src="js/hug.js"></script>
+  </body>
+</html>

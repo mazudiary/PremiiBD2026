@@ -426,6 +426,14 @@ body {
   padding: 40px 20px;
 }
 
+.action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  align-items: center;
+  justify-content: center;
+}
+
 /* Closing Section */
 .closing-section {
   margin: 40px 0 60px;
@@ -1338,6 +1346,27 @@ body {
 .cake-button span:not(.cake-icon) {
   position: relative;
   z-index: 1;
+}
+
+.hug-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 34px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #4a2c2c;
+  background: linear-gradient(135deg, #ffe1eb, #fff1e0, #ffd7e8);
+  border: 2px solid rgba(255, 255, 255, 0.7);
+  box-shadow: 0 10px 30px rgba(255, 107, 157, 0.25);
+  transition: all 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.hug-button:hover {
+  transform: translateY(-4px) scale(1.04);
+  box-shadow: 0 14px 36px rgba(255, 107, 157, 0.35);
 }
 
 .love-tag {
